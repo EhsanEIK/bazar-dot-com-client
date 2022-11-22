@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useAdmin from '../../../hooks/useAdmin';
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
 
     const handleLogout = () => {
         logout()
@@ -17,7 +19,9 @@ const Navbar = () => {
         <li><Link to='/about'>About</Link></li>
         {
             user?.email ? <>
-                <li><Link to='/admin/manageProducts'>Admin</Link></li>
+                {
+                    isAdmin && <li><Link to='/admin/manageProducts'>Admin</Link></li>
+                }
                 <li onClick={handleLogout}><Link>Logout</Link></li>
                 <li><p className='bg-red-600 text-white rounded-xl px-2'>Welcome, {user?.email}</p></li>
             </>
