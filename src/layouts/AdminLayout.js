@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
+import useAdmin from '../hooks/useAdmin';
 
 const AdminLayout = () => {
+    const { user } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
 
     return (
         <div className="drawer drawer-mobile">
@@ -17,7 +20,10 @@ const AdminLayout = () => {
                     <li><Link to='/home'>Home</Link></li>
                     <li><Link to='/admin/manageUsers'>Manage Users</Link></li>
                     <li><Link to='/admin/manageProducts'>Manage Products</Link></li>
-                    <li><Link to='/admin/addProduct'>Add Product</Link></li>
+                    {
+                        isAdmin &&
+                        <li><Link to='/admin/addProduct'>Add Product</Link></li>
+                    }
                 </ul>
             </div>
         </div>
