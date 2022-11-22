@@ -5,6 +5,7 @@ import ManageUsers from "../../Pages/Admin/ManageUsers/ManageUsers";
 import UpdateProduct from "../../Pages/Admin/UpdateProduct/UpdateProduct";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../layouts/Main");
@@ -25,14 +26,20 @@ const router = createBrowserRouter([
     },
     {
         path: '/admin',
-        element: <AdminLayout></AdminLayout>,
+        element: <PrivateRoute><AdminLayout></AdminLayout></PrivateRoute>,
         children: [
             {
                 path: '/admin/manageUsers',
                 element: <ManageUsers></ManageUsers>
             },
-            { path: '/admin/manageProducts', element: <ManageProducts></ManageProducts> },
-            { path: '/admin/addProduct', element: <AddProduct></AddProduct> },
+            {
+                path: '/admin/manageProducts',
+                element: <ManageProducts></ManageProducts>
+            },
+            {
+                path: '/admin/addProduct',
+                element: <AddProduct></AddProduct>
+            },
             {
                 path: '/admin/updateProduct/:id',
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`),

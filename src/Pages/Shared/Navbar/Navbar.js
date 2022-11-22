@@ -7,15 +7,17 @@ const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
 
     const handleLogout = () => {
-        logout().then(() => toast.success('Log out successfully')).catch(err => console.error(err));
+        logout()
+            .then(() => toast.success('Log out successfully'))
+            .catch(err => console.error(err));
     }
 
     const menuItems = <>
         <li><Link to='/home'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
-        <li><Link to='/admin/manageProducts'>Admin</Link></li>
         {
             user?.email ? <>
+                <li><Link to='/admin/manageProducts'>Admin</Link></li>
                 <li onClick={handleLogout}><Link>Logout</Link></li>
                 <li><p className='bg-red-600 text-white rounded-xl px-2'>Welcome, {user?.email}</p></li>
             </>
