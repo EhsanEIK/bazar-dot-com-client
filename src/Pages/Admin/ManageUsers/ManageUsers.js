@@ -1,8 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useAdmin from '../../../hooks/useAdmin';
 
 const ManageUsers = () => {
+    const { user } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
+
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: () => fetch('http://localhost:5000/users', {
@@ -71,18 +76,22 @@ const ManageUsers = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                        {user?.role === 'admin' ?
-                                            <label className='text-green-600 font-semibold'>Admin</label>
-                                            :
-                                            <button onClick={() => handleMakeAdmin(user)} className='btn btn-sm btn-primary'>Make Admin</button>
+                                        {isAdmin && (
+                                            user?.role === 'admin' ?
+                                                <label className='text-green-600 font-semibold'>Admin</label>
+                                                :
+                                                <button onClick={() => handleMakeAdmin(user)} className='btn btn-sm btn-primary'>Make Admin</button>
+                                        )
                                         }
                                     </td>
                                     <td>
                                         {
-                                            user?.role === 'moderator' ?
-                                                <label className='text-green-600 font-semibold'>Moderator</label>
-                                                :
-                                                <button onClick={() => handleMakeModerator(user)} className='btn btn-sm btn-warning'>Make Moderator</button>
+                                            isAdmin && (
+                                                user?.role === 'moderator' ?
+                                                    <label className='text-green-600 font-semibold'>Moderator</label>
+                                                    :
+                                                    <button onClick={() => handleMakeModerator(user)} className='btn btn-sm btn-warning'>Make Moderator</button>
+                                            )
                                         }
                                     </td>
                                 </tr>)
