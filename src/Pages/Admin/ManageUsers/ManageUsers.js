@@ -5,7 +5,11 @@ import toast from 'react-hot-toast';
 const ManageUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
-        queryFn: () => fetch('http://localhost:5000/users')
+        queryFn: () => fetch('http://localhost:5000/users', {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('bazarToken')}`,
+            }
+        })
             .then(res => res.json())
     })
 
@@ -14,7 +18,8 @@ const ManageUsers = () => {
         fetch(`http://localhost:5000/users/makeAdmin?email=${user?.email}`, {
             method: "PUT",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('bazarToken')}`,
             }
         })
             .then(res => res.json())
@@ -31,7 +36,8 @@ const ManageUsers = () => {
         fetch(`http://localhost:5000/users/makeModerator?email=${user?.email}`, {
             method: "PUT",
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('bazarToken')}`,
             }
         })
             .then(res => res.json())

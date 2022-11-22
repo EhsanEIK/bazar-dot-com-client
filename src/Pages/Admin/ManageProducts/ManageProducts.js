@@ -8,7 +8,11 @@ const ManageProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async function () {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch('http://localhost:5000/products', {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('bazarToken')}`,
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -25,7 +29,10 @@ const ManageProducts = () => {
 
     const handleDelete = id => {
         fetch(`http://localhost:5000/products/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                authorization: `bearer ${localStorage.getItem('bazarToken')}`,
+            }
         })
             .then(res => res.json())
             .then(data => {
