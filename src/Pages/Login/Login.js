@@ -21,6 +21,7 @@ const Login = () => {
                 toast.success("Login successfully");
                 event.target.reset();
                 const user = { email: data.email };
+                // get the jwt token
                 fetch('http://localhost:5000/jwt', {
                     method: "POST",
                     headers: {

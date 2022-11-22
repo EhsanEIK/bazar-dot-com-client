@@ -23,6 +23,7 @@ const AuthProvider = ({ children }) => {
 
     // logout
     const logout = () => {
+        localStorage.removeItem('bazarToken');
         setLoading(true);
         return signOut(auth);
     }

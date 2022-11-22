@@ -15,6 +15,7 @@ const Register = () => {
 
         createUser(data.email, data.password)
             .then(result => {
+                // saved user info into the database
                 fetch('http://localhost:5000/users', {
                     method: "POST",
                     headers: {
@@ -25,8 +26,20 @@ const Register = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.acknowledged) {
-                            toast.success("User created successfully");
-                            event.target.reset();
+                            // get the jwt token
+                            fetch('http://localhost:5000/jwt', {
+                                method: "POST",
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(user)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    localStorage.setItem('bazarToken', data.token);
+                                    toast.success("User created successfully");
+                                    event.target.reset();
+                                })
                         }
                     })
             })
