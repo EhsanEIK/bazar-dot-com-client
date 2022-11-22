@@ -1,10 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useAdmin from '../../../hooks/useAdmin';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 
 const ManageProducts = () => {
+    const { user } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
+
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async function () {
@@ -78,7 +83,10 @@ const ManageProducts = () => {
                                         </Link>
                                     </td>
                                     <td>
-                                        <label onClick={() => handleSetProduct(product)} htmlFor="confirmation-modal" className='btn btn-sm btn-secondary w-full'>Delete</label>
+                                        <label
+                                            onClick={() => handleSetProduct(product)}
+                                            htmlFor="confirmation-modal" className='btn btn-sm btn-secondary w-full'
+                                            disabled={!isAdmin}>Delete</label>
                                     </td>
                                 </tr>)
                         }
