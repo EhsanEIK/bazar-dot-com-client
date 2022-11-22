@@ -6,6 +6,7 @@ import UpdateProduct from "../../Pages/Admin/UpdateProduct/UpdateProduct";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import ModeratorRoute from "../ModeratorRoute/ModeratorRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/admin',
-        element: <PrivateRoute><AdminLayout></AdminLayout></PrivateRoute>,
+        element: <PrivateRoute>
+            <ModeratorRoute>
+                <AdminLayout></AdminLayout>
+            </ModeratorRoute>
+        </PrivateRoute>,
         children: [
             {
                 path: '/admin/manageUsers',

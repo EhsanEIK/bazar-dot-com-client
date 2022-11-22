@@ -3,10 +3,12 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useAdmin from '../../../hooks/useAdmin';
+import useModerator from '../../../hooks/useModerator';
 
 const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email);
+    const [isModerator] = useModerator(user?.email);
 
     const handleLogout = () => {
         logout()
@@ -20,7 +22,7 @@ const Navbar = () => {
         {
             user?.email ? <>
                 {
-                    isAdmin && <li><Link to='/admin/manageProducts'>Admin</Link></li>
+                    (isAdmin || isModerator) && <li><Link to='/admin/manageProducts'>Admin</Link></li>
                 }
                 <li onClick={handleLogout}><Link>Logout</Link></li>
                 <li><p className='bg-red-600 text-white rounded-xl px-2'>Welcome, {user?.email}</p></li>
