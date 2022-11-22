@@ -20,7 +20,19 @@ const Login = () => {
             .then(result => {
                 toast.success("Login successfully");
                 event.target.reset();
-                navigate(from, { replace: true });
+                const user = { email: data.email };
+                fetch('http://localhost:5000/jwt', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('bazarToken', data.token);
+                        navigate(from, { replace: true });
+                    })
             })
             .catch(err => setErrMsg(err.message))
     }
