@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Product = ({ product }) => {
+const Product = ({ product, setOrderProduct }) => {
     const { name, image, price } = product;
 
     return (
@@ -10,7 +10,7 @@ const Product = ({ product }) => {
                 <h2 className="text-3xl font-bold">{name}</h2>
                 <p className='text-xl'>Price: ${price}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
+                    <label onClick={() => setOrderProduct(product)} htmlFor='confirmation-modal' className="btn btn-primary">Buy Now</label>
                 </div>
             </div>
         </div>

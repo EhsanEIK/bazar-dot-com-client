@@ -1,11 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Orders = () => {
+    const { user } = useContext(AuthContext);
+
     const { data: orders = [] } = useQuery({
-        queryKey: ['orders'],
+        queryKey: ['orders', user?.email],
         queryFn: async function () {
-            const res = await fetch('http://localhost:5000/orders');
+            const res = await fetch(`http://localhost:5000/orders?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -19,7 +22,7 @@ const Orders = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th>Email</th>
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Payment Status</th>
@@ -29,9 +32,9 @@ const Orders = () => {
                         {
                             orders.map((order, idx) =>
                                 <tr key={order._id} className="hover">
-                                    <th>{idx}</th>
-                                    <td>{order.name}</td>
-                                    <td>{order.product}</td>
+                                    <th>{idx + 1}</th>
+                                    <td>{order.email}</td>
+                                    <td>{order.productName}</td>
                                     <td>{order.price}</td>
                                     <td>
                                         <button className='btn btn-primary btn-sm'>Payment</button>

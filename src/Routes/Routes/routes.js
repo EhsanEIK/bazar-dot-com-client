@@ -53,7 +53,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/admin/updateProduct/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('bazarToken')}`
+                    }
+                }),
                 element: <UpdateProduct></UpdateProduct>
             },
         ]

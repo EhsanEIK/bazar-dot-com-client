@@ -32,8 +32,8 @@ const ManageProducts = () => {
         setProduct(null);
     }
 
-    const handleDelete = id => {
-        fetch(`http://localhost:5000/products/${id}`, {
+    const handleDelete = product => {
+        fetch(`http://localhost:5000/products/${product._id}`, {
             method: "DELETE",
             headers: {
                 authorization: `bearer ${localStorage.getItem('bazarToken')}`,

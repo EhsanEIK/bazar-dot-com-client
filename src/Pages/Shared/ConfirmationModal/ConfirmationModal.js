@@ -9,7 +9,7 @@ const ConfirmationModal = ({ title, message, btnName, closeModal, btnAction, dat
                     <h3 className="font-bold text-lg">{title}</h3>
                     <p className="py-4">{message}</p>
                     <div className="modal-action">
-                        <label onClick={() => btnAction(dataModal._id)} htmlFor="confirmation-modal" className="btn btn-sm bg-red-600 border-red-600">{btnName}</label>
+                        <label onClick={() => btnAction(dataModal)} htmlFor="confirmation-modal" className="btn btn-sm bg-red-600 border-red-600">{btnName}</label>
                         <label onClick={closeModal} htmlFor="confirmation-modal" className="btn btn-outline btn-sm">Cancel</label>
                     </div>
                 </div>
