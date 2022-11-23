@@ -38,7 +38,7 @@ const Orders = () => {
                                     <td>{order.productName}</td>
                                     <td>{order.price}</td>
                                     <td>
-                                        <Link to='/payment'>
+                                        <Link to={`/payment/${order._id}`}>
                                             <button className='btn btn-primary btn-sm'>Payment</button>
                                         </Link>
                                     </td>
