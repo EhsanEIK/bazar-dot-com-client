@@ -5,6 +5,7 @@ import ManageUsers from "../../Pages/Admin/ManageUsers/ManageUsers";
 import UpdateProduct from "../../Pages/Admin/UpdateProduct/UpdateProduct";
 import Login from "../../Pages/Login/Login";
 import Orders from "../../Pages/Orders/Orders/Orders";
+import Payment from "../../Pages/Orders/Payment/Payment";
 import Register from "../../Pages/Register/Register";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import ModeratorRoute from "../ModeratorRoute/ModeratorRoute";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: '/orders',
                 element: <PrivateRoute><Orders></Orders></PrivateRoute>
+            },
+            {
+                path: '/payment',
+                element: <PrivateRoute><Payment></Payment> </PrivateRoute>
             },
             { path: '/login', element: <Login></Login> },
             { path: '/register', element: <Register></Register> },
