@@ -23,6 +23,7 @@ const Prodcuts = () => {
     const handleAddOrder = product => {
         const order = {
             email: user?.email,
+            productId: product._id,
             productName: orderProduct.name,
             price: orderProduct.price,
         }
