@@ -24,6 +24,7 @@ const Navbar = () => {
                 {
                     (isAdmin || isModerator) && <li><Link to='/admin/manageProducts'>Admin</Link></li>
                 }
+                <li><Link to='/orders'>Orders</Link></li>
                 <li onClick={handleLogout}><Link>Logout</Link></li>
                 <li><p className='bg-red-600 text-white rounded-xl px-2'>Welcome, {user?.email}</p></li>
             </>

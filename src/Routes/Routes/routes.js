@@ -4,6 +4,7 @@ import ManageProducts from "../../Pages/Admin/ManageProducts/ManageProducts";
 import ManageUsers from "../../Pages/Admin/ManageUsers/ManageUsers";
 import UpdateProduct from "../../Pages/Admin/UpdateProduct/UpdateProduct";
 import Login from "../../Pages/Login/Login";
+import Orders from "../../Pages/Orders/Orders/Orders";
 import Register from "../../Pages/Register/Register";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import ModeratorRoute from "../ModeratorRoute/ModeratorRoute";
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
             { path: '/', element: <Home></Home> },
             { path: '/home', element: <Home></Home> },
             { path: '/about', element: <About></About> },
+            { path: '/orders', element: <PrivateRoute></PrivateRoute> },
             { path: '/login', element: <Login></Login> },
             { path: '/register', element: <Register></Register> },
         ]
