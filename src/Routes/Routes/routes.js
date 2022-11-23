@@ -30,7 +30,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/payment/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('bazarToken')}`
+                    }
+                }),
                 element: <PrivateRoute><Payment></Payment></PrivateRoute>
             },
             { path: '/login', element: <Login></Login> },

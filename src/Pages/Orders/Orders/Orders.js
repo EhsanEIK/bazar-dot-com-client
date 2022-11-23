@@ -9,7 +9,11 @@ const Orders = () => {
     const { data: orders = [] } = useQuery({
         queryKey: ['orders', user?.email],
         queryFn: async function () {
-            const res = await fetch(`http://localhost:5000/orders?email=${user?.email}`);
+            const res = await fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('bazarToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -38,9 +42,14 @@ const Orders = () => {
                                     <td>{order.productName}</td>
                                     <td>{order.price}</td>
                                     <td>
-                                        <Link to={`/payment/${order._id}`}>
-                                            <button className='btn btn-primary btn-sm'>Payment</button>
-                                        </Link>
+                                        {
+                                            order?.paid ?
+                                                <span className='text-green-600 font-bold'>Paid</span>
+                                                :
+                                                <Link to={`/payment/${order._id}`}>
+                                                    <button className='btn btn-primary btn-sm'>Payment</button>
+                                                </Link>
+                                        }
                                     </td>
                                 </tr>
                             )

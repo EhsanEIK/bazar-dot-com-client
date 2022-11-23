@@ -30,11 +30,13 @@ const CheckoutForm = ({ order }) => {
         event.preventDefault();
 
         if (!stripe || !elements) {
+            setProcessing(false);
             return;
         }
         const card = elements.getElement(CardElement);
         if (card == null) {
             setCardErrorMsg(card.message);
+            setProcessing(false);
             return;
         }
         else {
@@ -46,7 +48,7 @@ const CheckoutForm = ({ order }) => {
         });
         if (error) {
             setCardErrorMsg(card.message);
-            return;
+            setProcessing(false);
         }
         else {
             setCardErrorMsg('');
@@ -65,6 +67,7 @@ const CheckoutForm = ({ order }) => {
         );
         if (confirmError) {
             setCardErrorMsg(confirmError.message);
+            setProcessing(false);
             return;
         }
         if (paymentIntent.status === "succeeded") {
