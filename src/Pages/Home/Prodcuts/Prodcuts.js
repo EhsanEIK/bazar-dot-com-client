@@ -10,7 +10,7 @@ const Prodcuts = () => {
     const { data: products = [] } = useQuery({
         queryKey: ['products'],
         queryFn: async function () {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch('https://bazar-dot-com-server.vercel.app/products');
             const data = await res.json();
             return data;
         }
@@ -27,7 +27,7 @@ const Prodcuts = () => {
             productName: orderProduct.name,
             price: orderProduct.price,
         }
-        fetch('http://localhost:5000/orders', {
+        fetch('https://bazar-dot-com-server.vercel.app/orders', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',

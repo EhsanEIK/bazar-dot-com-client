@@ -10,7 +10,7 @@ const ManageUsers = () => {
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
-        queryFn: () => fetch('http://localhost:5000/users', {
+        queryFn: () => fetch('https://bazar-dot-com-server.vercel.app/users', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('bazarToken')}`,
             }
@@ -20,7 +20,7 @@ const ManageUsers = () => {
 
     // make admin handler
     const handleMakeAdmin = user => {
-        fetch(`http://localhost:5000/users/makeAdmin?email=${user?.email}`, {
+        fetch(`https://bazar-dot-com-server.vercel.app/users/makeAdmin?email=${user?.email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',
@@ -38,7 +38,7 @@ const ManageUsers = () => {
 
     // make moderator handler
     const handleMakeModerator = user => {
-        fetch(`http://localhost:5000/users/makeModerator?email=${user?.email}`, {
+        fetch(`https://bazar-dot-com-server.vercel.app/users/makeModerator?email=${user?.email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

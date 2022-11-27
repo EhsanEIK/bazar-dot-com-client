@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/payment/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`, {
+                loader: ({ params }) => fetch(`https://bazar-dot-com-server.vercel.app/orders/${params.id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('bazarToken')}`
                     }
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/admin/updateProduct/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`, {
+                loader: ({ params }) => fetch(`https://bazar-dot-com-server.vercel.app/products/${params.id}`, {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('bazarToken')}`
                     }

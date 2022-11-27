@@ -11,7 +11,7 @@ const UpdateProduct = () => {
     const handleUpdateProduct = (data, event) => {
         setErrMsg('');
         const product = { name: data.name, price: data.price };
-        fetch(`http://localhost:5000/products/${storedProduct._id}`, {
+        fetch(`https://bazar-dot-com-server.vercel.app/products/${storedProduct._id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

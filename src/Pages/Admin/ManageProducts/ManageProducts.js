@@ -13,7 +13,7 @@ const ManageProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async function () {
-            const res = await fetch('http://localhost:5000/products', {
+            const res = await fetch('https://bazar-dot-com-server.vercel.app/products', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('bazarToken')}`,
                 }
@@ -33,7 +33,7 @@ const ManageProducts = () => {
     }
 
     const handleDelete = product => {
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://bazar-dot-com-server.vercel.app/products/${product._id}`, {
             method: "DELETE",
             headers: {
                 authorization: `bearer ${localStorage.getItem('bazarToken')}`,

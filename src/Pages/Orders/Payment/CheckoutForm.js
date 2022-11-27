@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://bazar-dot-com-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-Type": "application/json",
@@ -77,7 +77,7 @@ const CheckoutForm = ({ order }) => {
                 transactionId: paymentIntent.id,
                 orderId: _id,
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://bazar-dot-com-server.vercel.app/payments', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json',

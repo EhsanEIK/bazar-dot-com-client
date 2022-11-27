@@ -22,7 +22,7 @@ const Login = () => {
                 event.target.reset();
                 const user = { email: data.email };
                 // get the jwt token
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://bazar-dot-com-server.vercel.app/jwt', {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json'

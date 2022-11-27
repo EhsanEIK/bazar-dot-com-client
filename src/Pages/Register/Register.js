@@ -16,7 +16,7 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(result => {
                 // saved user info into the database
-                fetch('http://localhost:5000/users', {
+                fetch('https://bazar-dot-com-server.vercel.app/users', {
                     method: "POST",
                     headers: {
                         'content-type': 'application/json'
@@ -27,7 +27,7 @@ const Register = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             // get the jwt token
-                            fetch('http://localhost:5000/jwt', {
+                            fetch('https://bazar-dot-com-server.vercel.app/jwt', {
                                 method: "POST",
                                 headers: {
                                     'content-type': 'application/json'

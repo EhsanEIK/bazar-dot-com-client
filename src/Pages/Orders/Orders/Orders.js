@@ -9,7 +9,7 @@ const Orders = () => {
     const { data: orders = [] } = useQuery({
         queryKey: ['orders', user?.email],
         queryFn: async function () {
-            const res = await fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+            const res = await fetch(`https://bazar-dot-com-server.vercel.app/orders?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('bazarToken')}`
                 }

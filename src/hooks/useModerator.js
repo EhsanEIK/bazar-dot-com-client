@@ -4,7 +4,7 @@ const useModerator = email => {
     const [isModerator, setIsModerator] = useState('');
     const [isModeratorLoading, setIsModeratorLoading] = useState(true);
     useEffect(() => {
-        fetch(`http://localhost:5000/users/Moderator/${email}`)
+        fetch(`https://bazar-dot-com-server.vercel.app/users/Moderator/${email}`)
             .then(res => res.json())
             .then(data => {
                 setIsModerator(data.isModerator);

@@ -27,7 +27,7 @@ const AddProduct = () => {
                         price: data.price,
                         image: imageURL
                     };
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://bazar-dot-com-server.vercel.app/products', {
                         method: "POST",
                         headers: {
                             'content-type': 'application/json',
