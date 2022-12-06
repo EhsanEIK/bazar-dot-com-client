@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
     const [errMsg, setErrMsg] = useState('');
+
+    const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -39,6 +42,7 @@ const Register = () => {
                                     localStorage.setItem('bazarToken', data.token);
                                     toast.success("User created successfully");
                                     event.target.reset();
+                                    navigate('/home');
                                 })
                         }
                     })

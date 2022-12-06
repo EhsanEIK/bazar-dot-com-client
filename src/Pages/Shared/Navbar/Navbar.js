@@ -22,7 +22,7 @@ const Navbar = () => {
         {
             user?.email ? <>
                 {
-                    (isAdmin || isModerator) && <li><Link to='/admin/manageProducts'>Admin</Link></li>
+                    (isAdmin || isModerator) && <li><Link to='/admin/manageProducts'>Dashboard</Link></li>
                 }
                 <li><Link to='/orders'>Orders</Link></li>
                 <li onClick={handleLogout}><Link>Logout</Link></li>
