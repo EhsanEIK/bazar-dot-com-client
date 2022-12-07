@@ -4,6 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
 import useModerator from '../../hooks/useModerator';
+import Spinner from '../../Pages/Shared/Spinner/Spinner';
 
 const ModeratorRoute = ({ children }) => {
     const { user, loading, logout } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const ModeratorRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading || isAdminLoading || isModeratorLoading) {
-        return <div>Loading...</div>
+        return <Spinner></Spinner>
     }
     if ((user?.email && isAdmin) || (user?.email && isModerator)) {
         return children;

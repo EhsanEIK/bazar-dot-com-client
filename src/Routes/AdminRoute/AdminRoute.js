@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
+import Spinner from '../../Pages/Shared/Spinner/Spinner';
 
 const AdminRoute = ({ children }) => {
     const { user, loading, logout } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const AdminRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading || isAdminLoading) {
-        return <div>Loading...</div>
+        return <Spinner></Spinner>
     }
     if (user?.email && isAdmin) {
         return children;

@@ -11,6 +11,11 @@ const AdminLayout = () => {
         <div className="drawer drawer-mobile">
             <input id="admin-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
+                <div className='flex justify-end'>
+                    <label htmlFor="admin-drawer" tabIndex={0} className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
+                </div>
                 <div className='m-10 mb-0'>
                     <Outlet></Outlet>
                 </div>
@@ -20,11 +25,10 @@ const AdminLayout = () => {
                         &copy; 2022 - Developed by <a href="https://www.linkedin.com/in/ehsanulislamkhan/" target="_blank" rel="noopener noreferrer" className="text-cyan-600 font-bold text-decoration-none">Ehsan</a>
                     </p>
                 </footer>
-                <label htmlFor="admin-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
             </div >
             <div className="drawer-side border-r-2 border-gray-300 shadow-xl">
                 <label htmlFor="admin-drawer" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 text-base-content">
+                <ul className="menu p-4 w-80 text-base-content bg-slate-100">
                     <li><Link to='/home'>Home</Link></li>
                     <li><Link to='/admin/manageUsers'>Manage Users</Link></li>
                     <li><Link to='/admin/manageProducts'>Manage Products</Link></li>
@@ -32,6 +36,7 @@ const AdminLayout = () => {
                         isAdmin &&
                         <li><Link to='/admin/addProduct'>Add Product</Link></li>
                     }
+                    <li><Link className='text-red-600 md:mt-[350px] mt-10'>{user?.email}</Link></li>
                 </ul>
             </div>
         </div >
