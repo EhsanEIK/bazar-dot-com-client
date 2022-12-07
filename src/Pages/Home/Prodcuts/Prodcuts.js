@@ -51,7 +51,7 @@ const Prodcuts = () => {
     return (
         <div className='container mx-auto'>
             <h1 className='text-5xl text-center font-semibold mt-10 mb-5'>All Products</h1>
-            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 gap-y-10 md:mx-0 mx-5 mt-20'>
                 {
                     products.map(product => <Product
                         key={product._id}

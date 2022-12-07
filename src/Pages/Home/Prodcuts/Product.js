@@ -4,7 +4,7 @@ const Product = ({ product, setOrderProduct }) => {
     const { name, image, price } = product;
 
     return (
-        <div className="card card-compact w-96 bg-base-100 shadow-xl">
+        <div className="card card-compact md:w-96 w-full bg-base-100 shadow-xl">
             <figure><img className='w-48 h-52' src={image} alt={name} /></figure>
             <div className="card-body">
                 <h2 className="text-3xl font-bold">{name}</h2>
