@@ -26,7 +26,7 @@ const Navbar = () => {
                 }
                 <li><Link to='/orders'>Orders</Link></li>
                 <li onClick={handleLogout}><Link>Logout</Link></li>
-                <li><p className='bg-red-600 text-white rounded-xl px-2'>Welcome, {user?.email}</p></li>
+                <li><p className='bg-slate-300 text-red-600 rounded-xl px-2'>{user?.email}</p></li>
             </>
                 : <>
                     <li><Link to='/login'>Login</Link></li>
